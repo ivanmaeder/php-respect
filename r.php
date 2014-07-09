@@ -3,7 +3,7 @@
 /* Include this file in all controller scripts.
  */
 
-$include_path = array($_SERVER['DOCUMENT_ROOT'] . '/respect/');
+$include_path = array($_SERVER['DOCUMENT_ROOT'] . '/r/');
 
 set_include_path(implode($include_path, ':'));
 

@@ -1,10 +1,13 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/respect/r.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/r.php');
+require_once('sql/country.php');
 
-$username = \redirect\get('username');
+//foreach (\country\fetchAll() as $row) {
+    //echo $row['name'] . '<br>';
+//}
 
-\view\set('username', $username);
+\view\set('countries', \country\fetchAll());
 \view\display();
 
 ?>
