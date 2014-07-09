@@ -3,16 +3,18 @@
 namespace country;
 
 function fetchAll() {
-    $connection = mysqli_connect('localhost', 'root', 'root', 'world');
-
     $q = "SELECT name
           FROM country";
 
-    $result = mysqli_query($connection, $q);
+    return \db\fetchAll($q);
+}
 
-    while ($row = mysqli_fetch_assoc($result)) {
-        yield $row;
-    }
+function fetch($code) {
+    $q = "SELECT name
+          FROM country
+          WHERE code = '$code'";
+
+    return \db\fetch($q);
 }
 
 ?>
