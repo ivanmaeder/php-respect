@@ -2,26 +2,26 @@
 
 namespace redirect;
 
+define('QUEUE', '_r_redirect_queue');
+define('ENQ', 1);
+define('DEQ', 0);
+
 function set($key, $value) {
-    $_SESSION['_r_redirect_queue'][1][$key] = $value;
+    $_SESSION[QUEUE][ENQ][$key] = $value;
 }
 
 function get($key) {
-    $value = $_SESSION['_r_redirect_queue'][0][$key];
-
-    //if (!$value) {
-        //$value = @$_SESSION['_r_redirect_queue'][1][$key];
-    //}
+    $value = $_SESSION[QUEUE][DEQ][$key];
 
     return $value;
 }
 
 function _dequeue() {
-    unset($_SESSION['_r_redirect_queue'][0]);
+    unset($_SESSION[QUEUE][DEQ]);
 
-    $_SESSION['_r_redirect_queue'][0] = @$_SESSION['_r_redirect_queue'][1];
+    $_SESSION[QUEUE][DEQ] = @$_SESSION[QUEUE][ENQ];
 
-    unset($_SESSION['_r_redirect_queue'][1]);
+    unset($_SESSION[QUEUE][ENQ]);
 }
 
 function http($url) {
